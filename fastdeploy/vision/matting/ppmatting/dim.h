@@ -12,22 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 #pragma once
-#include "fastdeploy/fastdeploy_model.h"
-#include "fastdeploy/vision/common/processors/transform.h"
-#include "fastdeploy/vision/common/result.h"
+#include "fastdeploy/vision/matting/ppmatting/ppmatting.h"
 
 namespace fastdeploy {
 namespace vision {
 namespace matting {
 
-class FASTDEPLOY_DECL PPMatting : public FastDeployModel {
+class FASTDEPLOY_DECL DIM : public PPMatting {
  public:
-  PPMatting(const std::string& model_file, const std::string& params_file,
-            const std::string& config_file,
-            const RuntimeOption& custom_option = RuntimeOption(),
-            const Frontend& model_format = Frontend::PADDLE);
+  DIM(const std::string& model_file, const std::string& params_file,
+      const std::string& config_file,
+      const RuntimeOption& custom_option = RuntimeOption(),
+      const Frontend& model_format = Frontend::PADDLE);
 
-  std::string ModelName() const { return "PPMatting"; }
+  std::string ModelName() const { return "DIM"; }
 
   virtual bool Predict(cv::Mat* im, MattingResult* result);
 
@@ -38,9 +36,6 @@ class FASTDEPLOY_DECL PPMatting : public FastDeployModel {
 
   bool Preprocess(Mat* mat, FDTensor* outputs,
                   std::map<std::string, std::array<int, 2>>* im_info);
-
-  bool Postprocess(std::vector<FDTensor>& infer_result, MattingResult* result,
-                   const std::map<std::string, std::array<int, 2>>& im_info);
 
   std::vector<std::shared_ptr<Processor>> processors_;
   std::string config_file_;
