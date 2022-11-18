@@ -12,7 +12,7 @@
 ```bash
 mkdir build
 cd build
-# 下载此模型需要的预编译库，用户可以自行在`FastDeoloy预编译库`中选择合适的版本下载
+# 下载此模型需要的预编译库，用户可以自行在`FastDeoloy预编译库`中选择合适的版本使用
 wget https://bj.bcebos.com/fastdeploy/release/cpp/fastdeploy-linux-x64-x.x.x.tgz
 tar xvf fastdeploy-linux-x64-x.x.x.tgz
 cmake .. -DFASTDEPLOY_INSTALL_DIR=${PWD}/fastdeploy-linux-x64-x.x.x
